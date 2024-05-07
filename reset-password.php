@@ -37,7 +37,7 @@
             // Check if the token has not expired
             if ($row['exp_date'] >= $curDate) {
                 ?>
-                <form action="update-forget-password.php" method="post">
+                <form action="update-password.php" method="post">
                     <h2>Reset password</h2>
 
                     <div class="container">

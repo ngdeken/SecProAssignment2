@@ -16,6 +16,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $userData = $result->fetch_assoc();
 $stmt->close();
+
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +42,52 @@ $stmt->close();
             </li>
         </ul>
     </nav>
-    
+    <div class="container">
+        <h2>Order Your Pizza</h2>
+        <form action="order.php" method="post">
+            <label for="menu">Menu:</label>
+            <select name="menu" id="menu">
+                <option value="1">Hawaii Chicken RM30</option>
+                <option value="2">Chicken Pepperoni RM25</option>
+                <option value="3">Deluxe Cheese RM20</option>
+            </select><br>
+			<label for="user_id">User ID:</label>
+			<input type="text" name="user_id" id="user_id" value="<?php echo $userData['user_id']; ?>"><br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" id="quantity" min="1" value="1"><br>
+
+			<label for="contact">Contact number:</label>
+            <input type="number" name="contact" id="contact"><br>
+
+            <label for="address">Delivery Address:</label>
+            <textarea name="address" id="address" rows="3"></textarea><br>
+
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+	<script>
+        var orderCount = 1;
+
+        function addOrder() {
+            orderCount++;
+            var ordersDiv = document.getElementById('orders');
+
+            var newOrder = document.createElement('div');
+            newOrder.className = 'order';
+            newOrder.innerHTML = '<h3>Order ' + orderCount + '</h3>' +
+                '<label for="menu_1' + orderCount + '">Pizza Type:</label>' +
+                '<select name="menu[]" id="menu_1' + orderCount + '">' +
+                '<option value="1">Hawaii Chicken RM30</option>' +
+                '<option value="2">Chicken Pepperoni RM25</option>' +
+                '<option value="3">Deluxe Cheese RM20</option>' +
+                '</select><br>' +
+                '<label for="quantity_' + orderCount + '">Quantity:</label>' +
+                '<input type="number" name="quantity[]" id="quantity_' + orderCount + '" min="1" value="1"><br>';
+
+            ordersDiv.appendChild(newOrder);
+        }
+    </script>
 
 </body>
 </html>
