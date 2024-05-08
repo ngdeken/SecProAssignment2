@@ -44,4 +44,25 @@ if ($result->num_rows > 0) {
     mysqli_query($db_connection, $query);
 
     echo "Order placed successfully!";
-    
+  
+
+?>
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" media="all" type="text/css">
+    <title>Order</title>
+</head>
+<body>
+    <button id="myBtn">Click this to redirect to home page.</button>
+        <script>
+        var btn = document.getElementById('myBtn');
+        btn.addEventListener('click', function() {
+            document.location.href = 'index.php';
+        });
+        </script>
+</body>
+</html>
